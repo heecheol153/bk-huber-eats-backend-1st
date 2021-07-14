@@ -3,14 +3,14 @@ import { CreateRestaurantDto } from './dtos/create-restaurant.dto';
 import { Restaurant } from './entities/restaurant.entity';
 import { RestaurantService } from './restaurants.service';
 
-@Resolver(of => Restaurant)
+@Resolver(() => Restaurant)
 export class RestaurantResolver {
   constructor(private readonly restaurantService: RestaurantService) {}
-  @Query(returns => [Restaurant])
+  @Query(() => [Restaurant])
   restaurants(): Promise<Restaurant[]> {
     return this.restaurantService.getAll();
   }
-  @Mutation(returns => Boolean)
+  @Mutation(() => Boolean)
   async createRestaurant(
     @Args('input') createRestaurantDto: CreateRestaurantDto,
   ): Promise<boolean> {
